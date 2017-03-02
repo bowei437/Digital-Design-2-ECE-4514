@@ -1,0 +1,4 @@
+Start with high throughput
+
+Annotate graph with actual delays
+

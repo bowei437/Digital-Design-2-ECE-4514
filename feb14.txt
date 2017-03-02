@@ -1,0 +1,10 @@
+Maybe consider doing system verilog
+
+SDC file is very important.
+
+
+Project 4 discussion:
+One design here. Not seperate area or power. But combined.
+
+
+The Vsim command will generate a vcd file that you pass to powerplay

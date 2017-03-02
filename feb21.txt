@@ -1,0 +1,7 @@
+Project 5
+
+Floating point
+
+Change exponent from base 2 to base 16. Each increment of the exponent shifts the mantissa four places. 
+
+Pipelined design.

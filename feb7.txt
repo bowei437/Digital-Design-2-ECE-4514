@@ -1,0 +1,9 @@
+Class feb7
+
+QYSY Module "ALTFP_MULT_" Single Precision. Can leave default. Add qIP file to project. Put in top level. Need to manually add in
+
+Read README. Simulate in Modelsim
+
+We are not doing a simple sin(x)/x as we are only getting first 5 series. 
+
+

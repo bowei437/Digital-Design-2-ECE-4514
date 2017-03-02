@@ -1,0 +1,15 @@
+NIOS Processor regular (not classic)
+RAM (on chip) 100kB
+PIO (parallel I/O) choose input
+uart debugger (JTAG UART)
+
+NIOS 2 (Vectors) Reset Vector memory -> onchip memory 2.0sl
+-> Assign Base Address
+
+x -> external connector conduit called x
+sinc_out external connector conduit called sinc_out on export
+
+Then click Generate HDL. sinc_box
+
+
+Last thing to do is back to Quartus. And add it to the project. 

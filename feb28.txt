@@ -1,0 +1,17 @@
+Midterm review 3/1
+
+No System Verilog.
+
+Learn techniques of high throughput vs latency
+
+Power
+	control by clock gating
+	rise time and fall time of signals (limited control)
+
+Role of constraint files SDC
+
+True (pipeline registers 6 instead of 5 stages)
+
+False (4input LUT) It can be. A LUT can implement any function
+
+Lease control = Leakage Power Consumption

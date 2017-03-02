@@ -1,0 +1,7 @@
+Which of the following are true statements relating FPGAs and Mask Programmable Gate Arrays
+FPGAs and MPGAs are both designed using HDL: True
+Both are built using a CMOS fabrication process: True
+Both are customized to a particular function through a final metalization step specified by the HDL: False
+Both are equivalent in power efficiency: False
+Both are equivalent in performance: False
+Both are equivalent in per-unit cost: False
