@@ -73,7 +73,7 @@ module myfpadd(add_sub, clock, dataa, datab, result);
 				exp_a = exp_a + 1; // increment so it loops
 			end
 
-			if (dataa[31] == 1'b1) begin
+			if ((dataa[31] == 1'b1) && (datab[31] == 1'b0)) begin // if A is negative ONLY
 				mant_comb = mant_b - tmant_a;
 				while ((mant_comb[23] == 1'b0) && (mant_comb[22] == 1'b0) && (mant_comb[21] == 1'b0) && (mant_comb[20] == 1'b0)) begin
 					mant_comb = mant_comb << 4;
@@ -81,12 +81,28 @@ module myfpadd(add_sub, clock, dataa, datab, result);
 				end
 				tempresult = {datab[31], exp_b[6:0], mant_comb[23:0]};
 			end
-			else if (datab[31] == 1'b1) begin
+			else if ((dataa[31] == 1'b0) && (datab[31] == 1'b1)) begin // if B is negative ONLY
 				mant_comb = mant_b - tmant_a;
+				while ((mant_comb[23] == 1'b0) && (mant_comb[22] == 1'b0) && (mant_comb[21] == 1'b0) && (mant_comb[20] == 1'b0)) begin
+					mant_comb = mant_comb << 4;
+					exp_b = exp_b - 1; 
+				end
+				tempresult = {datab[31], exp_b[6:0], mant_comb[23:0]};
+			end
+			else if ((dataa[31] == 1'b1) && (datab[31] == 1'b1)) begin /// BOTH NEGATIVE
+				mant_comb = tmant_a + mant_b;
+				while ((mant_comb[23] == 1'b0) && (mant_comb[22] == 1'b0) && (mant_comb[21] == 1'b0) && (mant_comb[20] == 1'b0)) begin
+					mant_comb = mant_comb << 4;
+					//exp_a = exp_a - 1; 
+				end
 				tempresult = {datab[31], exp_b[6:0], mant_comb[23:0]};
 			end
 			else begin
 				mant_comb = tmant_a + mant_b;
+				while (mant_comb[27:24] != 4'b0) begin
+					mant_comb = mant_comb >> 4;
+					exp_b = exp_b + 1;
+				end
 				tempresult = {datab[31], exp_b[6:0], mant_comb[23:0]};
 			end
 			done = 1'b1;
@@ -94,17 +110,44 @@ module myfpadd(add_sub, clock, dataa, datab, result);
 				//exp_b = 7'b0;
 		end
 		else if (exp_a == exp_b) begin
-			if (dataa[31] == 1'b1) begin
-				mant_comb = mant_b - mant_a;
-				tempresult = {datab[31], exp_a[6:0], mant_comb[23:0]};
+			if ((dataa[31] == 1'b1) && (datab[31] == 1'b0)) begin // if A is negative ONLY
+				if (mant_a > mant_b) begin
+					mant_comb = mant_a - mant_b;
+					tempresult = {dataa[31], exp_a[6:0], mant_comb[23:0]};
+				end
+				else begin
+					mant_comb = mant_b - mant_a;
+					tempresult = {datab[31], exp_a[6:0], mant_comb[23:0]};
+				end
+				
 			end
-			else if (datab[31] == 1'b1) begin
-				mant_comb = mant_a - mant_b;
-				tempresult = {datab[31], exp_a[6:0], mant_comb[23:0]};
+			else if ((dataa[31] == 1'b0) && (datab[31] == 1'b1)) begin // if B is negative ONLY
+				if (mant_a > mant_b) begin
+					mant_comb = mant_a - mant_b;
+					tempresult = {dataa[31], exp_a[6:0], mant_comb[23:0]};
+				end
+				else begin
+					mant_comb = mant_b - mant_a;
+					tempresult = {datab[31], exp_a[6:0], mant_comb[23:0]};
+				end
+
+			end
+			else if ((dataa[31] == 1'b1) && (datab[31] == 1'b1)) begin // both negative
+				mant_comb = mant_a + mant_b;
+				while (mant_comb[27:24] != 4'b0) begin
+					mant_comb = mant_comb >> 4;
+					exp_b = exp_b + 1;
+				end
+				tempresult = {datab[31], exp_b[6:0], mant_comb[23:0]};
+				
 			end
 			else begin
 				mant_comb = mant_a + mant_b;
-				tempresult = {datab[31], exp_a[6:0], mant_comb[23:0]};
+				while (mant_comb[27:24] != 4'b0) begin
+					mant_comb = mant_comb >> 4;
+					exp_b = exp_b + 1;
+				end
+				tempresult = {datab[31], exp_b[6:0], mant_comb[23:0]};
 			end
 			
 			done = 1'b1;

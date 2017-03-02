@@ -38,21 +38,53 @@ module tb_fsm();
         datab = 32'H01F00000; //  15
         // result =  or 0310E000
         #60;
-        dataa = 32'H00000000; // 
-        datab = 32'H00000000; //  
-        // result =  or 
+        dataa = 32'H01B00000; // 11
+        datab = 32'H82120000; //  -18
+        // result =  or 81700000
         #60;
-        dataa = 32'H00000000; // 
-        datab = 32'H00000000; //  
-        // result =  or 
+        dataa = 32'H81D00000; // -13
+        datab = 32'H02110000; //  17
+        // result =  or 01400000
         #60;
-        dataa = 32'H00000000; // 
-        datab = 32'H00000000; //  
-        // result =  or 
+        dataa = 32'H81A00000; // -10
+        datab = 32'H82190000; //  -25
+        // result =  or 82230000
         #60;
-        dataa = 32'H00000000; // 
-        datab = 32'H00000000; //  
-        // result =  or 
+        dataa = 32'H01F00000; // 15
+        datab = 32'H02FF0000; //  255
+        // result =  or 0310E000
+        #60;
+        dataa = 32'H01F00000; // 15
+        datab = 32'H01F00000; //  15
+        // result =  or 021E0000
+        #60;
+        dataa = 32'H81E00000; // -14
+        datab = 32'H01C00000; //  12
+        // result =  or 81200000
+        #60;
+        dataa = 32'H81500000; // -5
+        datab = 32'H01B00000; //  11
+        // result =  or 01600000
+        #60;
+        dataa = 32'H01F00000; // 15
+        datab = 32'H81C00000; //  -12
+        // result =  or 01300000
+        #60;
+        dataa = 32'H81E00000; // -14
+        datab = 32'H81B00000; //  -11
+        // result =  or 82190000
+        #60;
+        dataa = 32'H81500000; // -5
+        datab = 32'H81500000; //  -5
+        // result =  or 81A00000
+        #60;
+        dataa = 32'H01400000; // 4
+        datab = 32'H01800000; //  8
+        // result =  or 01C00000
+        #60;
+        dataa = 32'H01900000; // 9
+        datab = 32'H01A00000; //  10
+        // result =  or 02130000
         #80;
             //dataa = 32'H018E3D46; //8.88996
         //dataa = 32'H01FE58E2; // 15.8967
@@ -66,6 +98,19 @@ endmodule
 
 
         /*
+        #60;
+        dataa = 32'H00000000; // 
+        datab = 32'H00000000; //  
+        // result =  or 
+        #60;
+        dataa = 32'H00000000; // 
+        datab = 32'H00000000; //  
+        // result =  or 
+        #60;
+        dataa = 32'H00000000; // 
+        datab = 32'H00000000; //  
+        // result =  or 
+
         // TEST SET 1
         //dataa = 32'H0176288C; // 7.3849
         dataa = 32'H0129126E; // 2.567
