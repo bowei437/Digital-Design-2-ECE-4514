@@ -63,29 +63,45 @@ module myfpmult(clock, dataa, datab, result);
       end
       else begin
          exp_comb = exp_a + exp_b;
-         /*
-         while ((exp_a > 7'b0) && (exp_b > 7'b0)) begin
-            mant_a = mant_a >> 4;
-            exp_a = exp_a - 1;
-
-            mant_b = mant_b >> 4;
-            exp_b = exp_b - 1;
-
-            shift = shift + 1;
-         end
-         */
-         //shift = shift * 4;
 
          mant_mult = mant_a * mant_b;
+
+         //mant_mult = mant_mult >> 16;
+         
+         while (mant_mult[27:24] == 4'b0) begin
+            mant_mult = mant_mult >> 4;
+            shift = shift + 1;
+         end
+
+         while (mant_mult[27:24] != 4'b0) begin
+            shift2 = shift2 + 1;
+            mant_mult = mant_mult >> 4;
+            //exp_a = exp_a + 1;
+            //exp_comb = exp_comb - 1;
+         end
+         
+         if ((shift + shift2) < 6) begin
+            exp_comb = exp_comb - 1;
+         end
+         
+         /*
+         if (shift2 > 4) begin
+            exp_comb = exp_comb -1;
+         end
+         */
+         /*
          while (shift > 7'b0) begin
             mant_mult = mant_mult >> 4;
             shift = shift - 1;
          end
+         */
          mant_comb[27:0] = mant_mult[27:0];
+         /*
          if ((mant_comb[23] == 1'b0) && (mant_comb[22] == 1'b0) && (mant_comb[21] == 1'b0) && (mant_comb[20] == 1'b0)) begin
             mant_comb = mant_comb << 4;
             exp_comb = exp_comb - 1; 
          end
+         */
          
          tempresult = {dataa[31], exp_comb[6:0], mant_comb[23:0]}; // write result out
 
