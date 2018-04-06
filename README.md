@@ -1,8 +1,8 @@
 # Digital Design 2 : ECE 4514
-This is the repository for my class at Virginia Tech on Digital Design 2. It features code made for the Altera DE1 SoC with NIOS II processor. 
+This is the repository for my class at Virginia Tech on Digital Design 2. It features code made for the Altera DE1 SoC FPGA with NIOS II processor. 
 
 In this class, we learned the following things:
-* Synchronous Clocks used in a Finite State Machine (FSM) 
+* Synchronous Clocks used in a Finite State Machine (FSM)  on an FPGA
 * Multiple Clock domains within a FSM and one-hot encoding (amongst many)
 * Custom Floating Point Addition/Multiplication/Division implementation
 * Dynamic and Static Power concerns and how to mitigate them (ex: clock Gating)
